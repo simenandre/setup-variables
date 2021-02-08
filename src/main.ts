@@ -5,8 +5,8 @@ import { matcher } from './matcher';
 async function run(): Promise<void> {
   try {
     const config = await makeConfig();
-    const out = matcher(config.key, config.map);
-    core.setOutput('out', out);
+    const result = matcher(config.key, config.map);
+    core.setOutput('result', result);
   } catch (error) {
     core.setFailed(error.message);
   }

@@ -10,6 +10,10 @@ inputs:
     required: true
     description: input description here
     default: default value if applicable
+  var-name:
+    required: false
+    description: 'output variable name'
+    default: result
 outputs:
   out:
     description: the mapped value

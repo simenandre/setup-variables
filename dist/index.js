@@ -8089,12 +8089,14 @@ const yaml = __importStar(__nccwpck_require__(552));
 exports.config = rt.Record({
     key: rt.String,
     map: rt.Dictionary(rt.String),
+    varName: rt.String,
 });
 function makeConfig() {
     return __awaiter(this, void 0, void 0, function* () {
         const map = yaml.parse(core_1.getInput('map', { required: true }));
         return exports.config.check({
             key: core_1.getInput('key', { required: true }),
+            varName: core_1.getInput('var-name') || 'result',
             map,
         });
     });
@@ -8145,8 +8147,8 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const config = yield config_1.makeConfig();
-            const out = matcher_1.matcher(config.key, config.map);
-            core.setOutput('out', out);
+            const result = matcher_1.matcher(config.key, config.map);
+            core.setOutput('result', result);
         }
         catch (error) {
             core.setFailed(error.message);
