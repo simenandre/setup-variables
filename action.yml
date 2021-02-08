@@ -1,0 +1,21 @@
+name: Setup Variables
+description: Map your variables based on other keys
+author: cobraz
+inputs:
+  key:
+    required: false
+    description: key value, only used when applicable
+    default: current branch
+  map:
+    required: true
+    description: input description here
+    default: default value if applicable
+outputs:
+  out:
+    description: the mapped value
+branding:
+  icon: zap
+  color: blue
+runs:
+  using: node12
+  main: dist/index.js

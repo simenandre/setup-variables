@@ -1,0 +1,19 @@
+on:
+  push:
+
+jobs:
+  simple:
+    name: Simple Workflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: FranzDiebold/github-env-vars-action@v2
+      - uses: cobraz/setup-variables@v1
+        id: stack
+        with:
+          key: ${{ env.CI_REF_NAME_SLUG }}
+          map: |
+            main: prod
+            staging: staging
+            dev: dev
+            '*': dev
