@@ -8172,7 +8172,7 @@ function isMatch(value, matchValue) {
 exports.isMatch = isMatch;
 function matcher(key, map) {
     const mapKeys = Object.keys(map);
-    let m = mapKeys.find(mapKey => isMatch(key, mapKey));
+    const m = mapKeys.find(mapKey => isMatch(key, mapKey));
     if (!m && map['_default']) {
         return map['_default'];
     }

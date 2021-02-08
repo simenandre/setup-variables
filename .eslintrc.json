@@ -4,8 +4,6 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended",
-    "plugin:promise/recommended",
-    "plugin:eslint-comments/recommended",
     "prettier",
     "prettier/@typescript-eslint"
   ],
@@ -19,12 +17,12 @@
     "project": "tsconfig.json",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "jest"],
+  "plugins": ["@typescript-eslint", "jest", "import"],
   "rules": {
-    "sort-imports": ["error", {"ignoreDeclarationSort": true}],
+    "sort-imports": ["error", { "ignoreDeclarationSort": true }],
     "import/order": [
       "error",
-      {"alphabetize": {"order": "asc"}, "newlines-between": "never"}
+      { "alphabetize": { "order": "asc" }, "newlines-between": "never" }
     ],
     "no-return-await": "error",
     "no-console": "error",
@@ -33,7 +31,7 @@
     "import/no-unassigned-import": "error",
     "@typescript-eslint/no-unused-vars": [
       "error",
-      {"argsIgnorePattern": "^_", "caughtErrors": "all"}
+      { "argsIgnorePattern": "^_", "caughtErrors": "all" }
     ],
     "@typescript-eslint/no-unused-expressions": "error"
   }

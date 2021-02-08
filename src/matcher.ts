@@ -4,12 +4,9 @@ export function isMatch(value: string, matchValue: string): boolean {
   return value === matchValue || Boolean(value.match(matchValue));
 }
 
-export function matcher(
-  key: string,
-  map: Record<string, string>,
-): string {
+export function matcher(key: string, map: Record<string, string>): string {
   const mapKeys = Object.keys(map);
-  let m = mapKeys.find(mapKey => isMatch(key, mapKey));
+  const m = mapKeys.find(mapKey => isMatch(key, mapKey));
 
   if (!m && map['_default']) {
     return map['_default'];

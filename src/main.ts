@@ -1,5 +1,5 @@
-import * as core from '@actions/core'
-import { makeConfig } from './config'
+import * as core from '@actions/core';
+import { makeConfig } from './config';
 import { matcher } from './matcher';
 
 async function run(): Promise<void> {
@@ -8,8 +8,8 @@ async function run(): Promise<void> {
     const out = matcher(config.key, config.map);
     core.setOutput('out', out);
   } catch (error) {
-    core.setFailed(error.message)
+    core.setFailed(error.message);
   }
 }
 
-run()
+run();
