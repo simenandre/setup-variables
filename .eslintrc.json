@@ -13,10 +13,6 @@
     "node": true
   },
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "tsconfig.json",
-    "sourceType": "module"
-  },
   "plugins": ["@typescript-eslint", "jest", "import"],
   "rules": {
     "sort-imports": ["error", { "ignoreDeclarationSort": true }],

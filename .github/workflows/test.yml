@@ -25,11 +25,11 @@ jobs:
           key: something
           map: |
             '.*': This means the Regex works
-      - run: echo ${{ steps.test1.output.out }}
+      - run: echo ${{ steps.test1.outputs.out }}
       - uses: ./
         id: test2
         with:
           key: something
           map: |
             '_default': Default works!
-      - run: echo ${{ steps.test2.output.out }}
+      - run: echo ${{ steps.test2.outputs.out }}
