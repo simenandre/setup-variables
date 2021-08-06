@@ -3,6 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "description": "Map your variables based on other keys",
+  "keywords": [
+    "actions",
+    "node",
+    "setup"
+  ],
+  "repository": "github:cobraz/setup-variables",
+  "license": "MIT",
+  "author": "",
   "main": "lib/main.js",
   "scripts": {
     "build": "ncc build --source-map src/main.ts",
@@ -12,17 +20,17 @@
     "test": "jest --passWithNoTests",
     "all": "yarn  run build && yarn  run format && yarn run lint && yarn run test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cobraz/setup-variables.git"
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn build && git add dist/* && lint-staged"
+    }
   },
-  "keywords": [
-    "actions",
-    "node",
-    "setup"
-  ],
-  "author": "",
-  "license": "MIT",
+  "lint-staged": {
+    "src/**/*.{yaml,yml}": "prettier --write",
+    "src/**/*.{js,ts}": "eslint --cache --fix",
+    "{.eslintrc,.releaserc.json,.tsconfig.json}": "prettier --write",
+    "*.md": "prettier --write"
+  },
   "dependencies": {
     "@actions/core": "^1.2.6",
     "husky": "^4.3.8",
@@ -47,16 +55,5 @@
     "rimraf": "~3.0.2",
     "ts-jest": "~26.4.4",
     "typescript": "^4.0.5"
-  },
-  "lint-staged": {
-    "src/**/*.{yaml,yml}": "prettier --write",
-    "src/**/*.{js,ts}": "eslint --cache --fix",
-    "{.eslintrc,.releaserc.json,.tsconfig.json}": "prettier --write",
-    "*.md": "prettier --write"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn build && git add dist/* && lint-staged"
-    }
   }
 }
