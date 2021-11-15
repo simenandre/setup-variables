@@ -1,34 +1,37 @@
 name: Release
-
 on:
   push:
     branches:
       - main
-      - next
-      - next-major
-      - alpha
-      - beta
 
 jobs:
-  release:
-    name: release
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v2
-        id: semantic
+      - uses: GoogleCloudPlatform/release-please-action@v2
+        id: release
         with:
-          extra_plugins: |
-            @semantic-release/git
-            @semantic-release/changelog
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
 
-      - name: Push updates to branch for major version
-        if: steps.semantic.outputs.new_release_published == 'true'
-        run: "git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:refs/heads/v${{steps.semantic.outputs.new_release_major_version}}"
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: yarn
+
+      - run: yarn install
+      - run: yarn run build
+
+      - if: ${{ steps.release.outputs.release_created }}
+        run: yarn publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
