@@ -8148,15 +8148,17 @@ function run() {
         try {
             const config = yield config_1.makeConfig();
             const result = matcher_1.matcher(config.key, config.map);
-            core.setOutput('result', result);
-        }
-        catch (error) {
-            if (error instanceof Error) {
-                core.setFailed(error.message);
+            if (typeof result === 'object') {
+                for (const [key, value] of Object.entries(result)) {
+                    core.setOutput(key, value);
+                }
             }
             else {
-                core.setFailed('Unknown error');
+                core.setOutput('result', result);
             }
+        }
+        catch (error) {
+            core.setFailed(error instanceof Error ? error.message : 'Unknown error');
         }
     });
 }

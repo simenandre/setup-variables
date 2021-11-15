@@ -6,13 +6,17 @@ async function run(): Promise<void> {
   try {
     const config = await makeConfig();
     const result = matcher(config.key, config.map);
-    core.setOutput('result', result);
-  } catch (error) {
-    if (error instanceof Error) {
-      core.setFailed(error.message);
+    if (typeof result === 'object') {
+      for (const [key, value] of Object.entries(
+        result as Record<string, unknown>,
+      )) {
+        core.setOutput(key, value);
+      }
     } else {
-      core.setFailed('Unknown error');
+      core.setOutput('result', result);
     }
+  } catch (error) {
+    core.setFailed(error instanceof Error ? error.message : 'Unknown error');
   }
 }
 
