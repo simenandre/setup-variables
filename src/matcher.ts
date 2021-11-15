@@ -4,7 +4,7 @@ export function isMatch(value: string, matchValue: string): boolean {
   return value === matchValue || Boolean(value.match(matchValue));
 }
 
-export function matcher(key: string, map: Record<string, string>): string {
+export function matcher(key: string, map: Record<string, unknown>): unknown {
   const mapKeys = Object.keys(map);
   const m = mapKeys.find(mapKey => isMatch(key, mapKey));
 

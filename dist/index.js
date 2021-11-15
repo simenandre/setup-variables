@@ -8088,7 +8088,7 @@ const rt = __importStar(__nccwpck_require__(568));
 const yaml = __importStar(__nccwpck_require__(552));
 exports.config = rt.Record({
     key: rt.String,
-    map: rt.Dictionary(rt.String),
+    map: rt.Dictionary(rt.Unknown),
     varName: rt.String,
 });
 function makeConfig() {
@@ -8151,7 +8151,12 @@ function run() {
             core.setOutput('result', result);
         }
         catch (error) {
-            core.setFailed(error.message);
+            if (error instanceof Error) {
+                core.setFailed(error.message);
+            }
+            else {
+                core.setFailed('Unknown error');
+            }
         }
     });
 }

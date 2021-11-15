@@ -4,7 +4,7 @@ import * as yaml from 'yaml';
 
 export const config = rt.Record({
   key: rt.String,
-  map: rt.Dictionary(rt.String),
+  map: rt.Dictionary(rt.Unknown),
   varName: rt.String,
 });
 
