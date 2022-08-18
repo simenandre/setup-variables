@@ -32,7 +32,7 @@
     "*.md": "prettier --write"
   },
   "dependencies": {
-    "@actions/core": "^1.2.6",
+    "@actions/core": "^1.9.1",
     "husky": "^4.3.8",
     "runtypes": "^5.0.1",
     "yaml": "^1.10.0"
