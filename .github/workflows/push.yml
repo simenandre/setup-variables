@@ -11,11 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14.x
-          registry-url: 'https://registry.npmjs.org'
+          node-version: 16.x
           cache: yarn
 
       - run: yarn install
@@ -28,14 +27,3 @@ jobs:
           commit_message: 'chore(dist): Update dist [automated commit]'
           commit_user_name: cobraz
           commit_user_email: cobraz@users.noreply.github.com
-
-      - uses: GoogleCloudPlatform/release-please-action@v2
-        id: release
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: node
-
-      - if: ${{ steps.release.outputs.release_created }}
-        run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
