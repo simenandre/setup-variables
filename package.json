@@ -8,7 +8,7 @@
     "node",
     "setup"
   ],
-  "repository": "github:cobraz/setup-variables",
+  "repository": "github:simenandre/setup-variables",
   "license": "MIT",
   "author": "",
   "main": "lib/main.js",
