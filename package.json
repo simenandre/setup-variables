@@ -35,7 +35,7 @@
     "@actions/core": "^1.10.0",
     "husky": "^4.3.8",
     "runtypes": "^6.6.0",
-    "yaml": "^2.2.1"
+    "yaml": "^2.2.2"
   },
   "devDependencies": {
     "@types/faker": "^6.6.9",
