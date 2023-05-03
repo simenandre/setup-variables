@@ -5,7 +5,7 @@
 # Map variable with ease
 
 ```yaml
-uses: cobraz/setup-variables@v2
+uses: simenandre/setup-variables@v2
 id: stack
 with:
   key: ${{ env.CI_REF_NAME_SLUG }}
